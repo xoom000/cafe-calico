@@ -1,11 +1,5 @@
 import { useState, useEffect } from 'react'
-import { businessInfo } from '../data/menu'
-
-const navLinks = [
-  { label: 'Menu', href: '#menu' },
-  { label: 'Our Story', href: '#about' },
-  { label: 'Hours', href: '#hours' },
-]
+import { businessInfo, navLinks } from '../data/business'
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false)
@@ -23,7 +17,12 @@ export function Nav() {
       }`}
     >
       <div className="container flex items-center justify-between h-16">
-        <a href="#" className={`font-display text-xl font-semibold transition-colors ${scrolled ? 'text-foreground' : 'text-background'}`}>
+        <a
+          href="#"
+          className={`font-display text-xl font-semibold transition-colors ${
+            scrolled ? 'text-foreground' : 'text-background'
+          }`}
+        >
           {businessInfo.name}
         </a>
 

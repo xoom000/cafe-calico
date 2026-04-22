@@ -1,20 +1,20 @@
+import { SectionHeader } from './ui/SectionHeader'
+
 export function AboutSection() {
   return (
     <section id="about" className="py-20 md:py-28 bg-background overflow-hidden">
       <div className="container">
         <div className="grid md:grid-cols-12 gap-12 md:gap-16 items-center">
-          {/* Text */}
           <div className="md:col-span-5">
-            <p className="text-sm font-semibold uppercase tracking-wider text-primary mb-4">Our Story</p>
-            <h2 className="font-display text-4xl md:text-5xl font-medium leading-[1.05] mb-6 text-balance">
-              A little corner of calm in the North State.
-            </h2>
+            <SectionHeader
+              eyebrow="Our Story"
+              heading="A little corner of calm in the North State."
+            />
             <div className="space-y-4 text-muted-foreground leading-relaxed text-lg">
               <p>Pull up a patio chair, meet the regulars, and stay for a while. We're glad you're here.</p>
             </div>
           </div>
 
-          {/* Image */}
           <div className="md:col-span-7 relative">
             <div className="absolute -inset-4 bg-secondary/15 rounded-3xl -rotate-1" aria-hidden="true" />
             <img

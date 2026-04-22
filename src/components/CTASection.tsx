@@ -1,17 +1,16 @@
 import { MapPin, Phone, Clock, ExternalLink } from 'lucide-react'
-import { businessInfo, hours } from '../data/menu'
+import { businessInfo, hours } from '../data/business'
+import { InfoRow } from './ui/InfoRow'
 
 export function CTASection() {
   return (
     <section id="hours" className="py-24 md:py-32 bg-gradient-warm relative overflow-hidden">
-      {/* Decoration */}
       <div className="absolute inset-0 pointer-events-none opacity-10">
         <div className="absolute top-0 right-0 w-80 h-80 rounded-full bg-primary blur-3xl" />
       </div>
 
       <div className="container relative">
         <div className="grid md:grid-cols-2 gap-16 items-start">
-          {/* Left — CTA */}
           <div>
             <h2 className="font-display text-4xl md:text-6xl font-medium leading-[1.05] mb-8 text-balance">
               Stop by for your
@@ -20,55 +19,30 @@ export function CTASection() {
             </h2>
 
             <div className="space-y-6">
-              {/* Address */}
-              <div className="flex gap-4">
-                <div className="shrink-0 w-11 h-11 rounded-full bg-background flex items-center justify-center shadow-soft">
-                  <MapPin className="w-5 h-5 text-primary" />
-                </div>
-                <div>
-                  <div className="font-display text-lg font-semibold mb-0.5">Find us</div>
-                  <div className="text-muted-foreground">{businessInfo.address}</div>
-                  <div className="text-sm text-muted-foreground/80">{businessInfo.addressNote}</div>
-                </div>
-              </div>
+              <InfoRow icon={<MapPin className="w-5 h-5" />} label="Find us">
+                <div className="text-muted-foreground">{businessInfo.address}</div>
+                <div className="text-sm text-muted-foreground/80">{businessInfo.addressNote}</div>
+              </InfoRow>
 
-              {/* Phone */}
-              <div className="flex gap-4">
-                <div className="shrink-0 w-11 h-11 rounded-full bg-background flex items-center justify-center shadow-soft">
-                  <Phone className="w-5 h-5 text-primary" />
-                </div>
-                <div>
-                  <div className="font-display text-lg font-semibold mb-0.5">Call ahead</div>
-                  <a
-                    href={businessInfo.phoneHref}
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    {businessInfo.phone}
-                  </a>
-                  <div className="text-sm text-muted-foreground/80">{businessInfo.phoneNote}</div>
-                </div>
-              </div>
+              <InfoRow icon={<Phone className="w-5 h-5" />} label="Call ahead">
+                <a href={businessInfo.phoneHref} className="text-muted-foreground hover:text-primary transition-colors">
+                  {businessInfo.phone}
+                </a>
+                <div className="text-sm text-muted-foreground/80">{businessInfo.phoneNote}</div>
+              </InfoRow>
 
-              {/* Hours */}
-              <div className="flex gap-4">
-                <div className="shrink-0 w-11 h-11 rounded-full bg-background flex items-center justify-center shadow-soft">
-                  <Clock className="w-5 h-5 text-primary" />
+              <InfoRow icon={<Clock className="w-5 h-5" />} label="Hours">
+                <div className="space-y-1">
+                  {hours.map((h) => (
+                    <div key={h.day} className="flex gap-4 text-muted-foreground">
+                      <span className="w-36 shrink-0">{h.day}</span>
+                      <span>{h.time}</span>
+                    </div>
+                  ))}
                 </div>
-                <div>
-                  <div className="font-display text-lg font-semibold mb-0.5">Hours</div>
-                  <div className="space-y-1">
-                    {hours.map((h) => (
-                      <div key={h.day} className="flex gap-4 text-muted-foreground">
-                        <span className="w-36 shrink-0">{h.day}</span>
-                        <span>{h.time}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
+              </InfoRow>
             </div>
 
-            {/* Instagram link */}
             <a
               href={businessInfo.instagram}
               target="_blank"
@@ -80,7 +54,6 @@ export function CTASection() {
             </a>
           </div>
 
-          {/* Right — Map */}
           <div className="rounded-2xl overflow-hidden shadow-elegant border border-border/30 aspect-square md:aspect-auto md:h-96">
             <iframe
               src={businessInfo.mapsEmbed}
